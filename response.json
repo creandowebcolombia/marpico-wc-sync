@@ -1,0 +1,1433 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Documentación API Marpico",
+      "description": "Documentación API Marpico",
+      "version": "v1"
+    },
+    "host": "marpicoprod.azurewebsites.net",
+    "schemes": [
+      "https"
+    ],
+    "basePath": "/api/inventarios",
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "securityDefinitions": {
+      "Bearer": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header",
+        "description": "Se debe anteponer el prefijo \"Api-Key \" seguido del token dado al cliente"
+      }
+    },
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
+    "paths": {
+      "/materialesAPI": {
+        "get": {
+          "operationId": "API Lista materiales",
+          "summary": "/api/inventarios/materialesAPI",
+          "description": "Lista de todos los materiales con el respectivo producto. \n Para la autorización del servicio se debe enviar en el Header de la petición: \n  Authorization: Api-Key token_cliente",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "familia",
+                    "subcategoria_1",
+                    "subcategoria_2",
+                    "subcategoria_3",
+                    "etiquetas",
+                    "imagenes",
+                    "materiales",
+                    "imagen"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "familia": {
+                      "title": "Familia",
+                      "description": "Familia al que pertence el producto o código de proveedor. Ejemplo:BO0020",
+                      "type": "string",
+                      "maxLength": 12,
+                      "minLength": 1
+                    },
+                    "descripcion_comercial": {
+                      "title": "Descripcion comercial",
+                      "description": "String conel nombre o descripción comercial del producto. Ejemplo: Slim Bag",
+                      "type": "string",
+                      "maxLength": 60,
+                      "minLength": 1,
+                      "x-nullable": true
+                    },
+                    "descripcion_larga": {
+                      "title": "Descripcion larga",
+                      "description": "String con la descripción detallada del producto. Ejemplo: Bolsa ecológica, útil para tiendas de comestibles, mercados, tiendas de libros.",
+                      "type": "string",
+                      "minLength": 1,
+                      "x-nullable": true
+                    },
+                    "material": {
+                      "title": "Material",
+                      "description": "String con el material del cual esta compuesto el producto. Ejemplo: Kambrel 80gr",
+                      "type": "string",
+                      "maxLength": 200,
+                      "minLength": 1,
+                      "x-nullable": true
+                    },
+                    "empaque_individual": {
+                      "title": "Empaque individual",
+                      "description": "String con la descripción del manejo individual del empaque, por ejemplo: 50 unds/caja blanca;1 und/bolsa",
+                      "type": "string",
+                      "maxLength": 200,
+                      "x-nullable": true
+                    },
+                    "empaque_unds_caja": {
+                      "title": "Empaque unds caja",
+                      "description": "Número entero de unidades por caja master",
+                      "type": "integer",
+                      "maximum": 2147483647,
+                      "minimum": -2147483648,
+                      "x-nullable": true
+                    },
+                    "empaque_und_medida": {
+                      "title": "Empaque und medida",
+                      "description": "Ejemplo unidad de medida: unds;par;set;kit;etc..",
+                      "type": "string",
+                      "maxLength": 200,
+                      "x-nullable": true
+                    },
+                    "empaque_largo": {
+                      "title": "Empaque largo",
+                      "description": "Largo en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "empaque_ancho": {
+                      "title": "Empaque ancho",
+                      "description": "Ancho en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "empaque_alto": {
+                      "title": "Empaque alto",
+                      "description": "Alto en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "empaque_peso_neto": {
+                      "title": "Empaque peso neto",
+                      "description": "Peso neto en gramos, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "empaque_peso_bruto": {
+                      "title": "Empaque peso bruto",
+                      "description": "Peso bruto en gramos, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "area_impresion": {
+                      "title": "Area impresion",
+                      "description": "String con el area de impresión. Ejemplos: Digital 5 x 5 cm. Tampo: 3 x 1,5 cm.",
+                      "type": "string",
+                      "maxLength": 200,
+                      "minLength": 1,
+                      "x-nullable": true
+                    },
+                    "medidas_largo": {
+                      "title": "Medidas largo",
+                      "description": "Largo en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "medidas_ancho": {
+                      "title": "Medidas ancho",
+                      "description": "Ancho en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "medidas_alto": {
+                      "title": "Medidas alto",
+                      "description": "Alto en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "medidas_diametro": {
+                      "title": "Medidas diametro",
+                      "description": "Diametro en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "medidas_peso_neto": {
+                      "title": "Medidas peso neto",
+                      "description": "Peso neto en gramos, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "tecnica_marca_codigo": {
+                      "title": "Tecnica marca codigo",
+                      "description": "Código con la tecnica de marca",
+                      "type": "string",
+                      "maxLength": 50,
+                      "x-nullable": true
+                    },
+                    "tecnica_marca_tecnica": {
+                      "title": "Tecnica marca tecnica",
+                      "description": "El nombre especifico de la tecnica de marca",
+                      "type": "string",
+                      "maxLength": 120,
+                      "x-nullable": true
+                    },
+                    "tecnica_marca_precio": {
+                      "title": "Tecnica marca precio",
+                      "description": "Precio de la tecnica de marca en pesos colombianos COP, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "tecnica_marca_num_tintas": {
+                      "title": "Tecnica marca num tintas",
+                      "description": "Entero con el número de tintas de la técnica de marca",
+                      "type": "integer",
+                      "maximum": 2147483647,
+                      "minimum": -2147483648,
+                      "x-nullable": true
+                    },
+                    "tecnica_marca_descripcion": {
+                      "title": "Tecnica marca descripcion",
+                      "description": "Descripcion detallada con la tecnica de marca. Ejemplo: Tampografía para Antiestrés",
+                      "type": "string",
+                      "x-nullable": true
+                    },
+                    "subcategoria_1": {
+                      "title": "Subcategoria 1",
+                      "required": [
+                        "jerarquia",
+                        "nombre",
+                        "categoria"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "jerarquia": {
+                          "title": "Jerarquia",
+                          "description": "Clave primaria de la subcategoria. Ejemplo:3000400001 ",
+                          "type": "string",
+                          "pattern": "^\\d+$",
+                          "maxLength": 10,
+                          "minLength": 1
+                        },
+                        "nombre": {
+                          "title": "Nombre",
+                          "description": "Nombre de la subcategoria. Maximo un producto puede tener 3 subcategorias. Ejemplo: Bolsos de Mano ",
+                          "type": "string",
+                          "maxLength": 255,
+                          "minLength": 1
+                        },
+                        "categoria": {
+                          "title": "Categoria",
+                          "required": [
+                            "jerarquia",
+                            "nombre"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "jerarquia": {
+                              "title": "Jerarquia",
+                              "description": "Clave primaria de la categoria. Ejemplo:30004 ",
+                              "type": "string",
+                              "pattern": "^\\d+$",
+                              "maxLength": 5,
+                              "minLength": 1
+                            },
+                            "nombre": {
+                              "title": "Nombre",
+                              "description": "Nombre de la Categoria. Maximo un producto puede tener 3 categorias. Una categoria por subcategoria. Ejemplo: Bolsos",
+                              "type": "string",
+                              "maxLength": 255,
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "subcategoria_2": {
+                      "title": "Subcategoria 2",
+                      "required": [
+                        "jerarquia",
+                        "nombre",
+                        "categoria"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "jerarquia": {
+                          "title": "Jerarquia",
+                          "description": "Clave primaria de la subcategoria. Ejemplo:3000400001 ",
+                          "type": "string",
+                          "pattern": "^\\d+$",
+                          "maxLength": 10,
+                          "minLength": 1
+                        },
+                        "nombre": {
+                          "title": "Nombre",
+                          "description": "Nombre de la subcategoria. Maximo un producto puede tener 3 subcategorias. Ejemplo: Bolsos de Mano ",
+                          "type": "string",
+                          "maxLength": 255,
+                          "minLength": 1
+                        },
+                        "categoria": {
+                          "title": "Categoria",
+                          "required": [
+                            "jerarquia",
+                            "nombre"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "jerarquia": {
+                              "title": "Jerarquia",
+                              "description": "Clave primaria de la categoria. Ejemplo:30004 ",
+                              "type": "string",
+                              "pattern": "^\\d+$",
+                              "maxLength": 5,
+                              "minLength": 1
+                            },
+                            "nombre": {
+                              "title": "Nombre",
+                              "description": "Nombre de la Categoria. Maximo un producto puede tener 3 categorias. Una categoria por subcategoria. Ejemplo: Bolsos",
+                              "type": "string",
+                              "maxLength": 255,
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "subcategoria_3": {
+                      "title": "Subcategoria 3",
+                      "required": [
+                        "jerarquia",
+                        "nombre",
+                        "categoria"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "jerarquia": {
+                          "title": "Jerarquia",
+                          "description": "Clave primaria de la subcategoria. Ejemplo:3000400001 ",
+                          "type": "string",
+                          "pattern": "^\\d+$",
+                          "maxLength": 10,
+                          "minLength": 1
+                        },
+                        "nombre": {
+                          "title": "Nombre",
+                          "description": "Nombre de la subcategoria. Maximo un producto puede tener 3 subcategorias. Ejemplo: Bolsos de Mano ",
+                          "type": "string",
+                          "maxLength": 255,
+                          "minLength": 1
+                        },
+                        "categoria": {
+                          "title": "Categoria",
+                          "required": [
+                            "jerarquia",
+                            "nombre"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "jerarquia": {
+                              "title": "Jerarquia",
+                              "description": "Clave primaria de la categoria. Ejemplo:30004 ",
+                              "type": "string",
+                              "pattern": "^\\d+$",
+                              "maxLength": 5,
+                              "minLength": 1
+                            },
+                            "nombre": {
+                              "title": "Nombre",
+                              "description": "Nombre de la Categoria. Maximo un producto puede tener 3 categorias. Una categoria por subcategoria. Ejemplo: Bolsos",
+                              "type": "string",
+                              "maxLength": 255,
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "temas": {
+                      "description": "Arreglo de strings con los temas del producto. Ejemplo: Fitness, Futbol Colombia",
+                      "type": "array",
+                      "items": {
+                        "title": "Temas",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1
+                      },
+                      "x-nullable": true
+                    },
+                    "etiquetas": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "nombre"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "title": "ID",
+                            "type": "integer",
+                            "readOnly": true
+                          },
+                          "nombre": {
+                            "title": "Nombre",
+                            "description": "Nombre de la etiqueta del producto. Ejemplo: Black Week",
+                            "type": "string",
+                            "pattern": "^[^|]*$",
+                            "maxLength": 255,
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "imagenes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "title": "Id",
+                            "description": "Identificador de la imagen",
+                            "type": "number"
+                          },
+                          "imagen": {
+                            "type": "object",
+                            "properties": {
+                              "file": {
+                                "title": "Imagen Original",
+                                "description": "Imagen original",
+                                "type": "string"
+                              },
+                              "file_sm": {
+                                "title": "Imagen pequeña",
+                                "description": "Imagen pequeña tamaño 224x224 resolucion 80",
+                                "type": "string"
+                              },
+                              "file_md": {
+                                "title": "Imagen mediana",
+                                "description": "Imagen pequeña tamaño 660x470 resolucion 80",
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "materiales": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "codigo",
+                          "color_nombre",
+                          "inventario_almacen",
+                          "trackings_importacion",
+                          "imagenes"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "codigo": {
+                            "title": "Codigo",
+                            "description": "Referencia del material. Ejemplo:3028114",
+                            "type": "integer",
+                            "maximum": 2147483647,
+                            "minimum": 0
+                          },
+                          "variedad": {
+                            "title": "Variedad",
+                            "type": "string",
+                            "maxLength": 255,
+                            "x-nullable": true
+                          },
+                          "color_nombre": {
+                            "title": "Color nombre",
+                            "description": "Nombre del color, cada codigo tiene un color",
+                            "type": "string",
+                            "maxLength": 255,
+                            "minLength": 1
+                          },
+                          "inventario_almacen": {
+                            "type": "array",
+                            "items": {
+                              "required": [
+                                "almacen"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "almacen": {
+                                  "title": "Almacen",
+                                  "required": [
+                                    "centro",
+                                    "codigo"
+                                  ],
+                                  "type": "object",
+                                  "properties": {
+                                    "centro": {
+                                      "title": "Centro",
+                                      "required": [
+                                        "codigo",
+                                        "nombre"
+                                      ],
+                                      "type": "object",
+                                      "properties": {
+                                        "codigo": {
+                                          "title": "Codigo",
+                                          "description": "El codigo del centro del almacen. Ejemplo: 1000",
+                                          "type": "integer",
+                                          "maximum": 2147483647,
+                                          "minimum": 0
+                                        },
+                                        "nombre": {
+                                          "title": "Nombre",
+                                          "description": "El nombre del centro del almacen. ejemplo: Celta, Americas",
+                                          "type": "string",
+                                          "pattern": "^[^|]*$",
+                                          "maxLength": 255,
+                                          "minLength": 1
+                                        }
+                                      }
+                                    },
+                                    "codigo": {
+                                      "title": "Codigo",
+                                      "description": "El código del almacen. Ejemplo:1010",
+                                      "type": "integer",
+                                      "maximum": 2147483647,
+                                      "minimum": 0
+                                    },
+                                    "nombre": {
+                                      "title": "Nombre",
+                                      "description": "El nombre del almacen, por ejemplo: Celta",
+                                      "type": "string",
+                                      "pattern": "^[^|]*$",
+                                      "maxLength": 255,
+                                      "x-nullable": true
+                                    }
+                                  }
+                                },
+                                "cantidad": {
+                                  "title": "Cantidad",
+                                  "description": "Número con la cantidad de inventario del código en ese almacen.",
+                                  "type": "integer",
+                                  "maximum": 2147483647,
+                                  "minimum": -2147483648
+                                },
+                                "unidad": {
+                                  "title": "Unidad",
+                                  "description": "String con la unidad de medida del inventario que se encuentra en ese almacen.Ejemplo:UND",
+                                  "type": "string",
+                                  "maxLength": 2,
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          },
+                          "trackings_importacion": {
+                            "type": "array",
+                            "items": {
+                              "required": [
+                                "estado",
+                                "fecha",
+                                "cantidad",
+                                "unidad",
+                                "ultima_actualizacion",
+                                "material"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "title": "ID",
+                                  "type": "integer",
+                                  "readOnly": true
+                                },
+                                "estado": {
+                                  "title": "Estado",
+                                  "description": "Estado del tracking de importación. Ejemplo: Nacionalización",
+                                  "type": "string",
+                                  "maxLength": 255,
+                                  "minLength": 1
+                                },
+                                "fecha": {
+                                  "title": "Fecha",
+                                  "description": "Fecha del tracking de inmportación viene en formato Año-mes-dia. Ejemplo: 2020-02-11",
+                                  "type": "string",
+                                  "format": "date"
+                                },
+                                "cantidad": {
+                                  "title": "Cantidad",
+                                  "description": "Número entero con la cantidad de materiales afectados por el estado del tracking.",
+                                  "type": "integer",
+                                  "maximum": 2147483647,
+                                  "minimum": -2147483648
+                                },
+                                "unidad": {
+                                  "title": "Unidad",
+                                  "description": "Unidad del tracking de importación",
+                                  "type": "string",
+                                  "maxLength": 255,
+                                  "minLength": 1
+                                },
+                                "ultima_actualizacion": {
+                                  "title": "Ultima actualizacion",
+                                  "description": "Campo con la fecha y hora exacta en la cual se consultó el tracking. Ejemplo: 2020-02-27T10:32:47 .398107-05:00",
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "material": {
+                                  "title": "Material",
+                                  "description": "Código del material al que se le consulta el tracking",
+                                  "type": "integer"
+                                }
+                              }
+                            }
+                          },
+                          "precio": {
+                            "title": "Precio",
+                            "description": "Precio en pesos colombianos COP,  el valor viene separado por . para decimales",
+                            "type": "number",
+                            "format": "decimal",
+                            "x-nullable": true
+                          },
+                          "descuento": {
+                            "title": "Descuento",
+                            "description": "Porcentaje de descuento a aplicar, se separa por punto. Ejemplo: 6.5",
+                            "type": "number",
+                            "format": "decimal"
+                          },
+                          "estado": {
+                            "title": "Estado",
+                            "description": "Estado del material: 1-Línea 2-Novedad  3-Saldos",
+                            "type": "string",
+                            "enum": [
+                              "1",
+                              "2",
+                              "3",
+                              "4",
+                              "5"
+                            ]
+                          },
+                          "inventario": {
+                            "title": "Inventario",
+                            "description": "Total de inventario disponible en los diferentes almacenes",
+                            "type": "integer",
+                            "maximum": 2147483647,
+                            "minimum": -2147483648
+                          },
+                          "imagenes": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "title": "Id",
+                                  "description": "Identificador de la imagen",
+                                  "type": "number"
+                                },
+                                "imagen": {
+                                  "type": "object",
+                                  "properties": {
+                                    "file": {
+                                      "title": "Imagen Original",
+                                      "description": "Imagen original",
+                                      "type": "string"
+                                    },
+                                    "file_sm": {
+                                      "title": "Imagen pequeña",
+                                      "description": "Imagen pequeña tamaño 224x224 resolucion 80",
+                                      "type": "string"
+                                    },
+                                    "file_md": {
+                                      "title": "Imagen mediana",
+                                      "description": "Imagen pequeña tamaño 660x470 resolucion 80",
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "imagen": {
+                      "title": "Imagen",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "title": "id",
+                          "type": "integer"
+                        },
+                        "imagen": {
+                          "title": "Imagenes",
+                          "type": "object",
+                          "properties": {
+                            "file": {
+                              "title": "Imagen Original",
+                              "description": "Imagen original",
+                              "type": "string"
+                            },
+                            "file_sm": {
+                              "title": "Imagen pequeña",
+                              "description": "Imagen pequeña tamaño 224x224 resolucion 80",
+                              "type": "string"
+                            },
+                            "file_md": {
+                              "title": "Imagen mediana",
+                              "description": "Imagen pequeña tamaño 660x470 resolucion 80",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "orden": {
+                          "title": "Orden",
+                          "type": "integer"
+                        },
+                        "nombre_original": {
+                          "title": "Nombre Original",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "API MARPICO"
+          ]
+        },
+        "parameters": []
+      },
+      "/materialesAPIByProducto": {
+        "get": {
+          "operationId": "Lista materiales API por nombre de la familia",
+          "summary": "/api/inventarios/materialesAPIByProducto?producto=",
+          "description": "API lista de todos los materiales filtrado por el nombre de la familia. \nPara la autorización del servicio se debe enviar en el Header de la petición: \n Authorization: Api-Key token_cliente",
+          "parameters": [
+            {
+              "name": "producto",
+              "in": "query",
+              "description": "Nombre de la familia del producto",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "familia",
+                    "subcategoria_1",
+                    "subcategoria_2",
+                    "subcategoria_3",
+                    "etiquetas",
+                    "imagenes",
+                    "materiales",
+                    "imagen"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "familia": {
+                      "title": "Familia",
+                      "description": "Familia al que pertence el producto o código de proveedor. Ejemplo:BO0020",
+                      "type": "string",
+                      "maxLength": 12,
+                      "minLength": 1
+                    },
+                    "descripcion_comercial": {
+                      "title": "Descripcion comercial",
+                      "description": "String conel nombre o descripción comercial del producto. Ejemplo: Slim Bag",
+                      "type": "string",
+                      "maxLength": 60,
+                      "minLength": 1,
+                      "x-nullable": true
+                    },
+                    "descripcion_larga": {
+                      "title": "Descripcion larga",
+                      "description": "String con la descripción detallada del producto. Ejemplo: Bolsa ecológica, útil para tiendas de comestibles, mercados, tiendas de libros.",
+                      "type": "string",
+                      "minLength": 1,
+                      "x-nullable": true
+                    },
+                    "material": {
+                      "title": "Material",
+                      "description": "String con el material del cual esta compuesto el producto. Ejemplo: Kambrel 80gr",
+                      "type": "string",
+                      "maxLength": 200,
+                      "minLength": 1,
+                      "x-nullable": true
+                    },
+                    "empaque_individual": {
+                      "title": "Empaque individual",
+                      "description": "String con la descripción del manejo individual del empaque, por ejemplo: 50 unds/caja blanca;1 und/bolsa",
+                      "type": "string",
+                      "maxLength": 200,
+                      "x-nullable": true
+                    },
+                    "empaque_unds_caja": {
+                      "title": "Empaque unds caja",
+                      "description": "Número entero de unidades por caja master",
+                      "type": "integer",
+                      "maximum": 2147483647,
+                      "minimum": -2147483648,
+                      "x-nullable": true
+                    },
+                    "empaque_und_medida": {
+                      "title": "Empaque und medida",
+                      "description": "Ejemplo unidad de medida: unds;par;set;kit;etc..",
+                      "type": "string",
+                      "maxLength": 200,
+                      "x-nullable": true
+                    },
+                    "empaque_largo": {
+                      "title": "Empaque largo",
+                      "description": "Largo en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "empaque_ancho": {
+                      "title": "Empaque ancho",
+                      "description": "Ancho en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "empaque_alto": {
+                      "title": "Empaque alto",
+                      "description": "Alto en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "empaque_peso_neto": {
+                      "title": "Empaque peso neto",
+                      "description": "Peso neto en gramos, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "empaque_peso_bruto": {
+                      "title": "Empaque peso bruto",
+                      "description": "Peso bruto en gramos, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "area_impresion": {
+                      "title": "Area impresion",
+                      "description": "String con el area de impresión. Ejemplos: Digital 5 x 5 cm. Tampo: 3 x 1,5 cm.",
+                      "type": "string",
+                      "maxLength": 200,
+                      "minLength": 1,
+                      "x-nullable": true
+                    },
+                    "medidas_largo": {
+                      "title": "Medidas largo",
+                      "description": "Largo en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "medidas_ancho": {
+                      "title": "Medidas ancho",
+                      "description": "Ancho en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "medidas_alto": {
+                      "title": "Medidas alto",
+                      "description": "Alto en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "medidas_diametro": {
+                      "title": "Medidas diametro",
+                      "description": "Diametro en centímetros, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "medidas_peso_neto": {
+                      "title": "Medidas peso neto",
+                      "description": "Peso neto en gramos, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "tecnica_marca_codigo": {
+                      "title": "Tecnica marca codigo",
+                      "description": "Código con la tecnica de marca",
+                      "type": "string",
+                      "maxLength": 50,
+                      "x-nullable": true
+                    },
+                    "tecnica_marca_tecnica": {
+                      "title": "Tecnica marca tecnica",
+                      "description": "El nombre especifico de la tecnica de marca",
+                      "type": "string",
+                      "maxLength": 120,
+                      "x-nullable": true
+                    },
+                    "tecnica_marca_precio": {
+                      "title": "Tecnica marca precio",
+                      "description": "Precio de la tecnica de marca en pesos colombianos COP, el valor viene separado por . para decimales",
+                      "type": "number",
+                      "format": "decimal",
+                      "x-nullable": true
+                    },
+                    "tecnica_marca_num_tintas": {
+                      "title": "Tecnica marca num tintas",
+                      "description": "Entero con el número de tintas de la técnica de marca",
+                      "type": "integer",
+                      "maximum": 2147483647,
+                      "minimum": -2147483648,
+                      "x-nullable": true
+                    },
+                    "tecnica_marca_descripcion": {
+                      "title": "Tecnica marca descripcion",
+                      "description": "Descripcion detallada con la tecnica de marca. Ejemplo: Tampografía para Antiestrés",
+                      "type": "string",
+                      "x-nullable": true
+                    },
+                    "subcategoria_1": {
+                      "title": "Subcategoria 1",
+                      "required": [
+                        "jerarquia",
+                        "nombre",
+                        "categoria"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "jerarquia": {
+                          "title": "Jerarquia",
+                          "description": "Clave primaria de la subcategoria. Ejemplo:3000400001 ",
+                          "type": "string",
+                          "pattern": "^\\d+$",
+                          "maxLength": 10,
+                          "minLength": 1
+                        },
+                        "nombre": {
+                          "title": "Nombre",
+                          "description": "Nombre de la subcategoria. Maximo un producto puede tener 3 subcategorias. Ejemplo: Bolsos de Mano ",
+                          "type": "string",
+                          "maxLength": 255,
+                          "minLength": 1
+                        },
+                        "categoria": {
+                          "title": "Categoria",
+                          "required": [
+                            "jerarquia",
+                            "nombre"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "jerarquia": {
+                              "title": "Jerarquia",
+                              "description": "Clave primaria de la categoria. Ejemplo:30004 ",
+                              "type": "string",
+                              "pattern": "^\\d+$",
+                              "maxLength": 5,
+                              "minLength": 1
+                            },
+                            "nombre": {
+                              "title": "Nombre",
+                              "description": "Nombre de la Categoria. Maximo un producto puede tener 3 categorias. Una categoria por subcategoria. Ejemplo: Bolsos",
+                              "type": "string",
+                              "maxLength": 255,
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "subcategoria_2": {
+                      "title": "Subcategoria 2",
+                      "required": [
+                        "jerarquia",
+                        "nombre",
+                        "categoria"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "jerarquia": {
+                          "title": "Jerarquia",
+                          "description": "Clave primaria de la subcategoria. Ejemplo:3000400001 ",
+                          "type": "string",
+                          "pattern": "^\\d+$",
+                          "maxLength": 10,
+                          "minLength": 1
+                        },
+                        "nombre": {
+                          "title": "Nombre",
+                          "description": "Nombre de la subcategoria. Maximo un producto puede tener 3 subcategorias. Ejemplo: Bolsos de Mano ",
+                          "type": "string",
+                          "maxLength": 255,
+                          "minLength": 1
+                        },
+                        "categoria": {
+                          "title": "Categoria",
+                          "required": [
+                            "jerarquia",
+                            "nombre"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "jerarquia": {
+                              "title": "Jerarquia",
+                              "description": "Clave primaria de la categoria. Ejemplo:30004 ",
+                              "type": "string",
+                              "pattern": "^\\d+$",
+                              "maxLength": 5,
+                              "minLength": 1
+                            },
+                            "nombre": {
+                              "title": "Nombre",
+                              "description": "Nombre de la Categoria. Maximo un producto puede tener 3 categorias. Una categoria por subcategoria. Ejemplo: Bolsos",
+                              "type": "string",
+                              "maxLength": 255,
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "subcategoria_3": {
+                      "title": "Subcategoria 3",
+                      "required": [
+                        "jerarquia",
+                        "nombre",
+                        "categoria"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "jerarquia": {
+                          "title": "Jerarquia",
+                          "description": "Clave primaria de la subcategoria. Ejemplo:3000400001 ",
+                          "type": "string",
+                          "pattern": "^\\d+$",
+                          "maxLength": 10,
+                          "minLength": 1
+                        },
+                        "nombre": {
+                          "title": "Nombre",
+                          "description": "Nombre de la subcategoria. Maximo un producto puede tener 3 subcategorias. Ejemplo: Bolsos de Mano ",
+                          "type": "string",
+                          "maxLength": 255,
+                          "minLength": 1
+                        },
+                        "categoria": {
+                          "title": "Categoria",
+                          "required": [
+                            "jerarquia",
+                            "nombre"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "jerarquia": {
+                              "title": "Jerarquia",
+                              "description": "Clave primaria de la categoria. Ejemplo:30004 ",
+                              "type": "string",
+                              "pattern": "^\\d+$",
+                              "maxLength": 5,
+                              "minLength": 1
+                            },
+                            "nombre": {
+                              "title": "Nombre",
+                              "description": "Nombre de la Categoria. Maximo un producto puede tener 3 categorias. Una categoria por subcategoria. Ejemplo: Bolsos",
+                              "type": "string",
+                              "maxLength": 255,
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "temas": {
+                      "description": "Arreglo de strings con los temas del producto. Ejemplo: Fitness, Futbol Colombia",
+                      "type": "array",
+                      "items": {
+                        "title": "Temas",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1
+                      },
+                      "x-nullable": true
+                    },
+                    "etiquetas": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "nombre"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "title": "ID",
+                            "type": "integer",
+                            "readOnly": true
+                          },
+                          "nombre": {
+                            "title": "Nombre",
+                            "description": "Nombre de la etiqueta del producto. Ejemplo: Black Week",
+                            "type": "string",
+                            "pattern": "^[^|]*$",
+                            "maxLength": 255,
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "imagenes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "title": "Id",
+                            "description": "Identificador de la imagen",
+                            "type": "number"
+                          },
+                          "imagen": {
+                            "type": "object",
+                            "properties": {
+                              "file": {
+                                "title": "Imagen Original",
+                                "description": "Imagen original",
+                                "type": "string"
+                              },
+                              "file_sm": {
+                                "title": "Imagen pequeña",
+                                "description": "Imagen pequeña tamaño 224x224 resolucion 80",
+                                "type": "string"
+                              },
+                              "file_md": {
+                                "title": "Imagen mediana",
+                                "description": "Imagen pequeña tamaño 660x470 resolucion 80",
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "materiales": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "codigo",
+                          "color_nombre",
+                          "inventario_almacen",
+                          "trackings_importacion",
+                          "imagenes"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "codigo": {
+                            "title": "Codigo",
+                            "description": "Referencia del material. Ejemplo:3028114",
+                            "type": "integer",
+                            "maximum": 2147483647,
+                            "minimum": 0
+                          },
+                          "variedad": {
+                            "title": "Variedad",
+                            "type": "string",
+                            "maxLength": 255,
+                            "x-nullable": true
+                          },
+                          "color_nombre": {
+                            "title": "Color nombre",
+                            "description": "Nombre del color, cada codigo tiene un color",
+                            "type": "string",
+                            "maxLength": 255,
+                            "minLength": 1
+                          },
+                          "inventario_almacen": {
+                            "type": "array",
+                            "items": {
+                              "required": [
+                                "almacen"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "almacen": {
+                                  "title": "Almacen",
+                                  "required": [
+                                    "centro",
+                                    "codigo"
+                                  ],
+                                  "type": "object",
+                                  "properties": {
+                                    "centro": {
+                                      "title": "Centro",
+                                      "required": [
+                                        "codigo",
+                                        "nombre"
+                                      ],
+                                      "type": "object",
+                                      "properties": {
+                                        "codigo": {
+                                          "title": "Codigo",
+                                          "description": "El codigo del centro del almacen. Ejemplo: 1000",
+                                          "type": "integer",
+                                          "maximum": 2147483647,
+                                          "minimum": 0
+                                        },
+                                        "nombre": {
+                                          "title": "Nombre",
+                                          "description": "El nombre del centro del almacen. ejemplo: Celta, Americas",
+                                          "type": "string",
+                                          "pattern": "^[^|]*$",
+                                          "maxLength": 255,
+                                          "minLength": 1
+                                        }
+                                      }
+                                    },
+                                    "codigo": {
+                                      "title": "Codigo",
+                                      "description": "El código del almacen. Ejemplo:1010",
+                                      "type": "integer",
+                                      "maximum": 2147483647,
+                                      "minimum": 0
+                                    },
+                                    "nombre": {
+                                      "title": "Nombre",
+                                      "description": "El nombre del almacen, por ejemplo: Celta",
+                                      "type": "string",
+                                      "pattern": "^[^|]*$",
+                                      "maxLength": 255,
+                                      "x-nullable": true
+                                    }
+                                  }
+                                },
+                                "cantidad": {
+                                  "title": "Cantidad",
+                                  "description": "Número con la cantidad de inventario del código en ese almacen.",
+                                  "type": "integer",
+                                  "maximum": 2147483647,
+                                  "minimum": -2147483648
+                                },
+                                "unidad": {
+                                  "title": "Unidad",
+                                  "description": "String con la unidad de medida del inventario que se encuentra en ese almacen.Ejemplo:UND",
+                                  "type": "string",
+                                  "maxLength": 2,
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          },
+                          "trackings_importacion": {
+                            "type": "array",
+                            "items": {
+                              "required": [
+                                "estado",
+                                "fecha",
+                                "cantidad",
+                                "unidad",
+                                "ultima_actualizacion",
+                                "material"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "title": "ID",
+                                  "type": "integer",
+                                  "readOnly": true
+                                },
+                                "estado": {
+                                  "title": "Estado",
+                                  "description": "Estado del tracking de importación. Ejemplo: Nacionalización",
+                                  "type": "string",
+                                  "maxLength": 255,
+                                  "minLength": 1
+                                },
+                                "fecha": {
+                                  "title": "Fecha",
+                                  "description": "Fecha del tracking de inmportación viene en formato Año-mes-dia. Ejemplo: 2020-02-11",
+                                  "type": "string",
+                                  "format": "date"
+                                },
+                                "cantidad": {
+                                  "title": "Cantidad",
+                                  "description": "Número entero con la cantidad de materiales afectados por el estado del tracking.",
+                                  "type": "integer",
+                                  "maximum": 2147483647,
+                                  "minimum": -2147483648
+                                },
+                                "unidad": {
+                                  "title": "Unidad",
+                                  "description": "Unidad del tracking de importación",
+                                  "type": "string",
+                                  "maxLength": 255,
+                                  "minLength": 1
+                                },
+                                "ultima_actualizacion": {
+                                  "title": "Ultima actualizacion",
+                                  "description": "Campo con la fecha y hora exacta en la cual se consultó el tracking. Ejemplo: 2020-02-27T10:32:47 .398107-05:00",
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "material": {
+                                  "title": "Material",
+                                  "description": "Código del material al que se le consulta el tracking",
+                                  "type": "integer"
+                                }
+                              }
+                            }
+                          },
+                          "precio": {
+                            "title": "Precio",
+                            "description": "Precio en pesos colombianos COP,  el valor viene separado por . para decimales",
+                            "type": "number",
+                            "format": "decimal",
+                            "x-nullable": true
+                          },
+                          "descuento": {
+                            "title": "Descuento",
+                            "description": "Porcentaje de descuento a aplicar, se separa por punto. Ejemplo: 6.5",
+                            "type": "number",
+                            "format": "decimal"
+                          },
+                          "estado": {
+                            "title": "Estado",
+                            "description": "Estado del material: 1-Línea 2-Novedad  3-Saldos",
+                            "type": "string",
+                            "enum": [
+                              "1",
+                              "2",
+                              "3",
+                              "4",
+                              "5"
+                            ]
+                          },
+                          "inventario": {
+                            "title": "Inventario",
+                            "description": "Total de inventario disponible en los diferentes almacenes",
+                            "type": "integer",
+                            "maximum": 2147483647,
+                            "minimum": -2147483648
+                          },
+                          "imagenes": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "title": "Id",
+                                  "description": "Identificador de la imagen",
+                                  "type": "number"
+                                },
+                                "imagen": {
+                                  "type": "object",
+                                  "properties": {
+                                    "file": {
+                                      "title": "Imagen Original",
+                                      "description": "Imagen original",
+                                      "type": "string"
+                                    },
+                                    "file_sm": {
+                                      "title": "Imagen pequeña",
+                                      "description": "Imagen pequeña tamaño 224x224 resolucion 80",
+                                      "type": "string"
+                                    },
+                                    "file_md": {
+                                      "title": "Imagen mediana",
+                                      "description": "Imagen pequeña tamaño 660x470 resolucion 80",
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "imagen": {
+                      "title": "Imagen",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "title": "id",
+                          "type": "integer"
+                        },
+                        "imagen": {
+                          "title": "Imagenes",
+                          "type": "object",
+                          "properties": {
+                            "file": {
+                              "title": "Imagen Original",
+                              "description": "Imagen original",
+                              "type": "string"
+                            },
+                            "file_sm": {
+                              "title": "Imagen pequeña",
+                              "description": "Imagen pequeña tamaño 224x224 resolucion 80",
+                              "type": "string"
+                            },
+                            "file_md": {
+                              "title": "Imagen mediana",
+                              "description": "Imagen pequeña tamaño 660x470 resolucion 80",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "orden": {
+                          "title": "Orden",
+                          "type": "integer"
+                        },
+                        "nombre_original": {
+                          "title": "Nombre Original",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "API MARPICO"
+          ]
+        },
+        "parameters": []
+      }
+    },
+    "definitions": {
+  
+    }
+  }
